@@ -1,0 +1,14 @@
+---
+- name: Ensure Curl is installed on Ubuntu/Debian
+  apt:
+    name: curl
+    state: present
+    update: true
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure Curl is installed on RHEL/CentOS
+  yum:
+    name: curl
+    state: present
+    update: true
+  when: ansible_os_family == 'Redhat'

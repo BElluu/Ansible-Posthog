@@ -1,0 +1,35 @@
+---
+- name: Posthog Yarn build
+  command:
+    cmd: yarn build
+    chdir: '/home/{{ user }}/Posthog'
+
+- name: Install packages from requirements.txt
+  command:
+    cmd: pip3 install -r requirements.txt
+    chdir: '/home/{{ user }}/Posthog'
+
+- name: Set Database URL for Posthog
+  command:
+    cmd: export DATABASE_URL='{{ DATABASE_URL }}'
+    chdir: '/home/{{ user }}/Posthog'
+
+- name: Set Redis URL for Posthog
+  command:
+    cmd: export REDIS_URL='{{ REDIS_URL }}'
+    chdir: '/home/{{ user }}/Posthog'
+
+- name: Posthog runserver
+  command:
+    cmd: python manage.py runserver
+    chdir: '/home/{{ user }}/Posthog'
+
+- name: Posthog collectstatic
+  command:
+    cmd: python manage.py runserver
+    chdir: '/home/{{ user }}/Posthog'
+
+- name: Start docker-server and docker-worker
+  command:
+    cmd: ./bin/docker-server & ./bin/docker-worker
+    chdir: '/home/{{ user }}/Posthog'

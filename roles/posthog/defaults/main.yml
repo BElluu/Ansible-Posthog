@@ -1,0 +1,5 @@
+---
+user: YOUR_USER_NAME
+repository: 'https://github.com/PostHog/posthog.git'
+DATABASE_URL: postgres://username:password@localhost:5432/posthog
+REDIS_URL: redis://localhost/

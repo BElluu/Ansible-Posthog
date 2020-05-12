@@ -1,0 +1,3 @@
+---
+- include: prepare_environment.yml
+- include: build_posthog.yml

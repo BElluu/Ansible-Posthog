@@ -1,0 +1,47 @@
+---
+- name: Ensure Debian pubkey is present
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure Debian sources list file exists
+  file:
+    path: /etc/apt/sources.list.d/yarn.list
+    owner: root
+    mode: 0644
+    state: touch
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure Debian package is in sources list
+  lineinfile:
+    dest: /etc/apt/sources.list.d/yarn.list
+    regexp: 'deb https://dl.yarnpkg.com/debian/ stable main'
+    line: 'deb https://dl.yarnpkg.com/debian/ stable main'
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Install RPM repository for RHEL/CentOS
+  get_url:
+    url: http://dl.yarnpkg.com/rpm/yarn.repo
+    dest: /etc/yum.repos.d/yarn.repo
+    owner: root
+    mode: 0644
+  when: ansible_os_family == 'Redhat'
+
+- name: Update APT cache
+  apt:
+    update_cache: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure Yarn is installed (Debian/Ubuntu)
+  apt:
+    name: yarn
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure Yarn is installed (RHEL/CentOS)
+  dnf:
+    name: yarn
+    state: present
+  when: ansible_os_family == 'Redhat'
