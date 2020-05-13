@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: curl
+    - role: yarn
+    - role: redis
+    - role: postgres
+    - role: posthog

@@ -1,0 +1,16 @@
+---
+  - name: Ensure Redis is installed (Debian/Ubuntu)
+    apt:
+      name: Redis
+      state: present
+    when: ansible_os_family == 'Debian' AND install_redis == 'true'
+
+  - name: Ensure Redis is installed (RHEL/CentOS)
+    dnf:
+      name: Redis
+      state: present
+    when: ansible_os_family == "Redhat" AND install_redis == 'true'
+
+  - name: Start Redis Server
+    command:
+      cmd: redis-server

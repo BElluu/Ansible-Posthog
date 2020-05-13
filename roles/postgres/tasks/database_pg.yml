@@ -1,0 +1,8 @@
+---
+- name: Ensure database is created
+  become: true
+  become_user: {{ postgres_username }}
+  postgresql_db:
+    name: '{{ postgres_dbname }}'
+    state: present
+  when: install_postgres == 'true'

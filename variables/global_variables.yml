@@ -1,0 +1,16 @@
+---
+user: YOUR_USER_NAME
+repository: 'https://github.com/PostHog/posthog.git'
+
+install_postgres: true
+postgres_dbname: DATABASE_NAME
+postgres_username: USER_NAME
+postgres_userpasswd: USER_PASSWORD
+postgres_packages:
+  - postgresql
+  - postgresql-contrib
+  - libpq-dev
+database_url: postgres://username:password@localhost:5432/posthog
+
+install_redis: true
+redis_url: redis://localhost/

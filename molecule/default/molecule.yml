@@ -1,0 +1,10 @@
+---
+driver:
+  name: docker
+platforms:
+  - name: ubuntu1804
+    image: ubuntu:18.04
+  - name: debian10
+    image: debian:10
+  - name: centos8
+    image: centos:8

@@ -5,5 +5,11 @@
   become: true
   become_user: root
   ignore_errors: true
+  vars_files:
+    - variables/global_variables.yml
   roles:
+    - role: curl
+    - role: yarn
+    - role: redis
+    - role: postgres
     - role: posthog
